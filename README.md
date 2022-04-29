@@ -2,7 +2,7 @@
 Wordpress Installation (using docker image of wordpress) on both Amazon linux and Ubuntu servers using Ansible
 
 vi main.yml
-
+```
 ---
 - name: "Installing Wordpress for both amazonlinux and Ubuntu"
   hosts: all
@@ -127,3 +127,4 @@ vi main.yml
           - "80:80"
         networks:
           - name: "{{wpnet}}"
+          ```
