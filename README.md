@@ -1,6 +1,7 @@
 # -Wordpress-Installation (docker image)---both-amazonlinux-and-Ubuntu-servers-using-Ansible
 Wordpress Installation (using docker image of wordpress) on both Amazon linux and Ubuntu servers using Ansible
 
+## Ansible playbook
 vi main.yml
 ```
 ---
@@ -127,6 +128,8 @@ vi main.yml
           - "80:80"
         networks:
           - name: "{{wpnet}}"
-          ```
-          
-          ##Output be like
+  ```
+        
+        
+   ## Output wil be as below
+         
