@@ -128,3 +128,5 @@ vi main.yml
         networks:
           - name: "{{wpnet}}"
           ```
+          
+          ##Output be like
