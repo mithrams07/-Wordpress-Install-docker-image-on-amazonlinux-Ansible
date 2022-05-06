@@ -360,17 +360,24 @@ PLAY RECAP *********************************************************************
 ```
 
 ##### Explanation of tasks:
-Task 1 : To install docker service in client node.
-Task 2 : To installing docker client for python on amazon linux. 
-Task 3 : To start and enable docker service.
-Task 4 : Adding ec2-user to docker group so that ec-user will be able to execute docker commands.
-Task 5 : Creating network. Containers will be attached to this network
-Task 6 : Creating database using mysql5.7 mysql docker image for wordpr.ss using the variables mentioned in "vars" section
-Task 7 : Create wordpress container using "wordpress" docker image 
 
-After executing playbook successfully, you can access the client server IP address in browser and will load the wordpress installation page like below
+Task 1 : To install docker service in client node.
+
+Task 2 : To installing docker client for python on amazon linux. 
+
+Task 3 : To start and enable docker service.
+
+Task 4 : Adding ec2-user to docker group so that ec-user will be able to execute docker commands.
+
+Task 5 : Creating network. Containers will be attached to this network.
+
+Task 6 : Creating database using mysql5.7 mysql docker image for wordpr.ss using the variables mentioned in "vars" section.
+
+Task 7 : Create wordpress container using "wordpress" docker image.
+
+After executing playbook successfully, you can access the client server IP address in browser and it will load the wordpress installation page like below.
          
 ![wp](https://user-images.githubusercontent.com/36097660/167084077-f0871e78-b7b6-4f0b-8884-ff28fe70052c.png)
 
 ## Conclusion
-Here, we have discussed about how to automate the wordpress installation with docker image using ansible.This is an basic form of it.
+Here, we have discussed about how to automate the wordpress installation with docker image using ansible. This is an basic form of it.
