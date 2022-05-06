@@ -2,7 +2,7 @@
 Wordpress Installation (using docker image of wordpress) on Amazon linux using Ansible
 
 ## Introduction
-Here I am explaining how to automate the process of Installing wordpress on amazon linux server using wordpress docker image in Linux server using Ansible Playbook.
+Here I am explaining how to automate the process of Installing wordpress on amazon linux server using wordpress and mysql docker image in Linux server using Ansible Playbook.
 
 Ansible is an open-source software provisioning, configuration management, and application-deployment tool enabling infrastructure as code.
 
@@ -224,8 +224,7 @@ Under this directory add below files.
 
 Both hosts and private key should be in the working directory where the ansible-playbook file reside.
 
-
-#### 3. Ansible playbook
+## Ansible playbook
 
 I have created a YML file inside the working directory named "main.yml".
 
@@ -310,13 +309,19 @@ vi main.yml
         networks:
           - name: "{{wpnet}}"
 ```
-        
+ Use the below command to check whether if there is any syntax mistake in the playbook.
+   ```
+   ansible-playbook  -i hosts word.yml --syntax-check
+   ```
+  Output will be look like the screenshot below if there is no syantax mistakes.      
  ![syn](https://user-images.githubusercontent.com/36097660/167087029-9359ba18-ca30-4b67-91a5-cc50dc7d4fb4.png)
 
 
         
         
    ## Output will be as below
+   
+When we run the playbook using below command, each task will be executed in given order.
    ```
    ansible-playbook  -i hosts word.yml 
 
@@ -363,8 +368,9 @@ Task 5 : Creating network. Containers will be attached to this network
 Task 6 : Creating database using mysql5.7 mysql docker image for wordpr.ss using the variables mentioned in "vars" section
 Task 7 : Create wordpress container using "wordpress" docker image 
 
-
+After executing playbook successfully, you can access the client server IP address in browser and will load the wordpress installation page like below
          
 ![wp](https://user-images.githubusercontent.com/36097660/167084077-f0871e78-b7b6-4f0b-8884-ff28fe70052c.png)
 
 ## Conclusion
+Here, we have discussed about how to automate the wordpress installation with docker image using ansible.This is an basic form of it.
