@@ -209,16 +209,23 @@ Create a working directory. I have created a directory "wordpress" under /home/e
 Under this directory add below files.
 
 #### 1. Inventory file.
-   I have created file "hosts" add the details to connect to the destination server as below.
+   I have created file "hosts" for add the details to connect to the client server as below.
+   ```
+  [wordpress]
   <IP address of destination server > ansible_user="ec2-user" ansible_port=22 ansible_ssh_private_key_file="ansible.pem"
+  ```
+ The heading "wordpress" in bracket is group name, which is used in classifying hosts and deciding what hosts you are controlling.
  
 #### 2. Private key
- I have created a file "ansible.pem" and pasted the corresponding private key.
+ I have created a file "ansible.pem" and pasted the corresponding private key of client server.
 
- 
+Both hosts and private key should be in the working directory where the ansible-playbook file reside.
 
 
-## Ansible playbook
+#### 3. Ansible playbook
+
+I have created a YML file inside the working directory. 
+
 vi main.yml
 ```
 ---
