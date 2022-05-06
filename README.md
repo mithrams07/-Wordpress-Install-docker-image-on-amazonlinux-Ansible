@@ -224,7 +224,7 @@ Both hosts and private key should be in the working directory where the ansible-
 
 #### 3. Ansible playbook
 
-I have created a YML file inside the working directory. 
+I have created a YML file inside the working directory named "main.yml".
 
 vi main.yml
 ```
