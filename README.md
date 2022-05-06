@@ -5,13 +5,12 @@ Wordpress Installation (using docker image of wordpress) on both Amazon linux an
 vi main.yml
 ```
 ---
-- name: "Installing Wordpress for both amazonlinux and Ubuntu"
+- name: "Installing Wordpress on amazonlinux"
   hosts: all
   become: true
 
   vars:
     user_amazon: ec2-user
-    user_ubuntu: ubuntu
     wpnet: word-net
     MYSQL_ROOT_PASS: mysqlroot@123
     MYSQL_DB: wordpress
@@ -36,41 +35,6 @@ vi main.yml
         state: present   
 
 
-    - name: "Add Docker GPG apt Key on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-
-
-    - name: "Add Docker Repository on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
-        state: present
-
-
-    - name: "Update apt and install docker-ce on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      apt:
-        name: docker-ce
-        state: latest
-        update_cache: true
-
-
-    - name: "install pip3 on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      apt:
-        name=python3-pip
-        state=present     
-
-
-    - name: "Install Docker Module for Python on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      pip:
-        name: docker
-    
-
     - name: "Restarting and enabling docker"
       service:
         name: docker
@@ -82,13 +46,6 @@ vi main.yml
       when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
       user:
         name: "{{user_amazon}}"
-        groups: docker
-        append: yes
-
-    - name: "Adding ubuntu to docker group on ubuntu"
-      when: ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
-      user:
-        name: "{{user_ubuntu}}"
         groups: docker
         append: yes
 
@@ -128,7 +85,7 @@ vi main.yml
           - "80:80"
         networks:
           - name: "{{wpnet}}"
-  ```
+```
         
         
    ## Output wil be as below
