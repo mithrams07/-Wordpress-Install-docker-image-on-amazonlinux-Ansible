@@ -188,7 +188,7 @@ Complete!
  60  mock2                    available    [ =stable ]
  61  dnsmasq2.85              available    [ =stable ]
  ```
-Once the installation completed. Please check the version throught the below command.
+Use the below command to check the ansible version.
 
 ```
 [ec2-user@ip-172-31-38-22 ~]$ ansible --version
