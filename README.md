@@ -4,10 +4,190 @@ Wordpress Installation (using docker image of wordpress) on both Amazon linux an
 ## Introduction
 
 ## Pre-requests
-Installing ansible on manager node.
-You can use the below command to install the Ansible in the Manager node.
+Install ansible on manager node.
+Use the below command to install the Ansible in the Manager node.
 
-sudo amazon-linux-extras install ansible2 -y
+```
+[ec2-user@ip-172-31-0-6 ~]$ sudo amazon-linux-extras install ansible2 -y
+Installing ansible
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Cleaning repos: amzn2-core amzn2extra-ansible2 amzn2extra-docker amzn2extra-kernel-5.10
+17 metadata files removed
+6 sqlite files removed
+0 metadata files removed
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                             | 3.7 kB  00:00:00     
+amzn2extra-ansible2                                                                                                    | 3.0 kB  00:00:00     
+amzn2extra-docker                                                                                                      | 3.0 kB  00:00:00     
+amzn2extra-kernel-5.10                                                                                                 | 3.0 kB  00:00:00     
+(1/9): amzn2-core/2/x86_64/group_gz                                                                                    | 2.5 kB  00:00:00     
+(2/9): amzn2-core/2/x86_64/updateinfo                                                                                  | 472 kB  00:00:00     
+(3/9): amzn2extra-ansible2/2/x86_64/updateinfo                                                                         |   76 B  00:00:00     
+(4/9): amzn2extra-ansible2/2/x86_64/primary_db                                                                         |  39 kB  00:00:00     
+(5/9): amzn2extra-docker/2/x86_64/updateinfo                                                                           | 6.2 kB  00:00:00     
+(6/9): amzn2extra-kernel-5.10/2/x86_64/updateinfo                                                                      |  13 kB  00:00:00     
+(7/9): amzn2extra-docker/2/x86_64/primary_db                                                                           |  88 kB  00:00:00     
+(8/9): amzn2extra-kernel-5.10/2/x86_64/primary_db                                                                      | 8.5 MB  00:00:00     
+(9/9): amzn2-core/2/x86_64/primary_db                                                                                  |  62 MB  00:00:01     
+Resolving Dependencies
+--> Running transaction check
+---> Package ansible.noarch 0:2.9.23-1.amzn2 will be installed
+--> Processing Dependency: sshpass for package: ansible-2.9.23-1.amzn2.noarch
+--> Processing Dependency: python-paramiko for package: ansible-2.9.23-1.amzn2.noarch
+--> Processing Dependency: python-keyczar for package: ansible-2.9.23-1.amzn2.noarch
+--> Processing Dependency: python-httplib2 for package: ansible-2.9.23-1.amzn2.noarch
+--> Processing Dependency: python-crypto for package: ansible-2.9.23-1.amzn2.noarch
+--> Running transaction check
+---> Package python-keyczar.noarch 0:0.71c-2.amzn2 will be installed
+---> Package python2-crypto.x86_64 0:2.6.1-13.amzn2.0.3 will be installed
+--> Processing Dependency: libtomcrypt.so.1()(64bit) for package: python2-crypto-2.6.1-13.amzn2.0.3.x86_64
+---> Package python2-httplib2.noarch 0:0.18.1-3.amzn2 will be installed
+---> Package python2-paramiko.noarch 0:1.16.1-3.amzn2.0.2 will be installed
+--> Processing Dependency: python2-ecdsa for package: python2-paramiko-1.16.1-3.amzn2.0.2.noarch
+---> Package sshpass.x86_64 0:1.06-1.amzn2.0.1 will be installed
+--> Running transaction check
+---> Package libtomcrypt.x86_64 0:1.18.2-1.amzn2.0.1 will be installed
+--> Processing Dependency: libtommath >= 1.0 for package: libtomcrypt-1.18.2-1.amzn2.0.1.x86_64
+--> Processing Dependency: libtommath.so.1()(64bit) for package: libtomcrypt-1.18.2-1.amzn2.0.1.x86_64
+---> Package python2-ecdsa.noarch 0:0.13.3-1.amzn2.0.1 will be installed
+--> Running transaction check
+---> Package libtommath.x86_64 0:1.0.1-4.amzn2.0.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================
+ Package                            Arch                     Version                              Repository                             Size
+==============================================================================================================================================
+Installing:
+ ansible                            noarch                   2.9.23-1.amzn2                       amzn2extra-ansible2                    17 M
+Installing for dependencies:
+ libtomcrypt                        x86_64                   1.18.2-1.amzn2.0.1                   amzn2extra-ansible2                   409 k
+ libtommath                         x86_64                   1.0.1-4.amzn2.0.1                    amzn2extra-ansible2                    36 k
+ python-keyczar                     noarch                   0.71c-2.amzn2                        amzn2extra-ansible2                   218 k
+ python2-crypto                     x86_64                   2.6.1-13.amzn2.0.3                   amzn2extra-ansible2                   476 k
+ python2-ecdsa                      noarch                   0.13.3-1.amzn2.0.1                   amzn2extra-ansible2                    94 k
+ python2-httplib2                   noarch                   0.18.1-3.amzn2                       amzn2extra-ansible2                   125 k
+ python2-paramiko                   noarch                   1.16.1-3.amzn2.0.2                   amzn2extra-ansible2                   259 k
+ sshpass                            x86_64                   1.06-1.amzn2.0.1                     amzn2extra-ansible2                    22 k
+
+Transaction Summary
+==============================================================================================================================================
+Install  1 Package (+8 Dependent packages)
+
+Total download size: 19 M
+Installed size: 110 M
+Downloading packages:
+(1/9): libtomcrypt-1.18.2-1.amzn2.0.1.x86_64.rpm                                                                       | 409 kB  00:00:00     
+(2/9): libtommath-1.0.1-4.amzn2.0.1.x86_64.rpm                                                                         |  36 kB  00:00:00     
+(3/9): python-keyczar-0.71c-2.amzn2.noarch.rpm                                                                         | 218 kB  00:00:00     
+(4/9): python2-crypto-2.6.1-13.amzn2.0.3.x86_64.rpm                                                                    | 476 kB  00:00:00     
+(5/9): python2-ecdsa-0.13.3-1.amzn2.0.1.noarch.rpm                                                                     |  94 kB  00:00:00     
+(6/9): python2-httplib2-0.18.1-3.amzn2.noarch.rpm                                                                      | 125 kB  00:00:00     
+(7/9): python2-paramiko-1.16.1-3.amzn2.0.2.noarch.rpm                                                                  | 259 kB  00:00:00     
+(8/9): sshpass-1.06-1.amzn2.0.1.x86_64.rpm                                                                             |  22 kB  00:00:00     
+(9/9): ansible-2.9.23-1.amzn2.noarch.rpm                                                                               |  17 MB  00:00:00     
+----------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                          47 MB/s |  19 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : sshpass-1.06-1.amzn2.0.1.x86_64                                                                                            1/9 
+  Installing : python2-httplib2-0.18.1-3.amzn2.noarch                                                                                     2/9 
+  Installing : libtommath-1.0.1-4.amzn2.0.1.x86_64                                                                                        3/9 
+  Installing : libtomcrypt-1.18.2-1.amzn2.0.1.x86_64                                                                                      4/9 
+  Installing : python2-crypto-2.6.1-13.amzn2.0.3.x86_64                                                                                   5/9 
+  Installing : python-keyczar-0.71c-2.amzn2.noarch                                                                                        6/9 
+  Installing : python2-ecdsa-0.13.3-1.amzn2.0.1.noarch                                                                                    7/9 
+  Installing : python2-paramiko-1.16.1-3.amzn2.0.2.noarch                                                                                 8/9 
+  Installing : ansible-2.9.23-1.amzn2.noarch                                                                                              9/9 
+  Verifying  : python2-ecdsa-0.13.3-1.amzn2.0.1.noarch                                                                                    1/9 
+  Verifying  : libtommath-1.0.1-4.amzn2.0.1.x86_64                                                                                        2/9 
+  Verifying  : python2-crypto-2.6.1-13.amzn2.0.3.x86_64                                                                                   3/9 
+  Verifying  : ansible-2.9.23-1.amzn2.noarch                                                                                              4/9 
+  Verifying  : python-keyczar-0.71c-2.amzn2.noarch                                                                                        5/9 
+  Verifying  : libtomcrypt-1.18.2-1.amzn2.0.1.x86_64                                                                                      6/9 
+  Verifying  : python2-paramiko-1.16.1-3.amzn2.0.2.noarch                                                                                 7/9 
+  Verifying  : python2-httplib2-0.18.1-3.amzn2.noarch                                                                                     8/9 
+  Verifying  : sshpass-1.06-1.amzn2.0.1.x86_64                                                                                            9/9 
+
+Installed:
+  ansible.noarch 0:2.9.23-1.amzn2                                                                                                             
+
+Dependency Installed:
+  libtomcrypt.x86_64 0:1.18.2-1.amzn2.0.1          libtommath.x86_64 0:1.0.1-4.amzn2.0.1         python-keyczar.noarch 0:0.71c-2.amzn2       
+  python2-crypto.x86_64 0:2.6.1-13.amzn2.0.3       python2-ecdsa.noarch 0:0.13.3-1.amzn2.0.1     python2-httplib2.noarch 0:0.18.1-3.amzn2    
+  python2-paramiko.noarch 0:1.16.1-3.amzn2.0.2     sshpass.x86_64 0:1.06-1.amzn2.0.1            
+
+Complete!
+  0  ansible2=latest          enabled      \
+        [ =2.4.2  =2.4.6  =2.8  =stable ]
+  2  httpd_modules            available    [ =1.0  =stable ]
+  3  memcached1.5             available    \
+        [ =1.5.1  =1.5.16  =1.5.17 ]
+  5  postgresql9.6            available    \
+        [ =9.6.6  =9.6.8  =stable ]
+  6  postgresql10             available    [ =10  =stable ]
+  9  R3.4                     available    [ =3.4.3  =stable ]
+ 10  rust1                    available    \
+        [ =1.22.1  =1.26.0  =1.26.1  =1.27.2  =1.31.0  =1.38.0
+          =stable ]
+ 11  vim                      available    [ =8.0  =stable ]
+ 18  libreoffice              available    \
+        [ =5.0.6.2_15  =5.3.6.1  =stable ]
+ 19  gimp                     available    [ =2.8.22 ]
+ 20  docker=latest            enabled      \
+        [ =17.12.1  =18.03.1  =18.06.1  =18.09.9  =stable ]
+ 21  mate-desktop1.x          available    \
+        [ =1.19.0  =1.20.0  =stable ]
+ 22  GraphicsMagick1.3        available    \
+        [ =1.3.29  =1.3.32  =1.3.34  =stable ]
+ 23  tomcat8.5                available    \
+        [ =8.5.31  =8.5.32  =8.5.38  =8.5.40  =8.5.42  =8.5.50
+          =stable ]
+ 24  epel                     available    [ =7.11  =stable ]
+ 25  testing                  available    [ =1.0  =stable ]
+ 26  ecs                      available    [ =stable ]
+ 27  corretto8                available    \
+        [ =1.8.0_192  =1.8.0_202  =1.8.0_212  =1.8.0_222  =1.8.0_232
+          =1.8.0_242  =stable ]
+ 28  firecracker              available    [ =0.11  =stable ]
+ 29  golang1.11               available    \
+        [ =1.11.3  =1.11.11  =1.11.13  =stable ]
+ 30  squid4                   available    [ =4  =stable ]
+ 32  lustre2.10               available    \
+        [ =2.10.5  =2.10.8  =stable ]
+ 33  java-openjdk11           available    [ =11  =stable ]
+ 34  lynis                    available    [ =stable ]
+ 35  kernel-ng                available    [ =stable ]
+ 36  BCC                      available    [ =0.x  =stable ]
+ 37  mono                     available    [ =5.x  =stable ]
+ 38  nginx1                   available    [ =stable ]
+ 39  ruby2.6                  available    [ =2.6  =stable ]
+ 40  mock                     available    [ =stable ]
+ 41  postgresql11             available    [ =11  =stable ]
+ 42  php7.4                   available    [ =stable ]
+ 43  livepatch                available    [ =stable ]
+ 44  python3.8                available    [ =stable ]
+ 45  haproxy2                 available    [ =stable ]
+ 46  collectd                 available    [ =stable ]
+ 47  aws-nitro-enclaves-cli   available    [ =stable ]
+ 48  R4                       available    [ =stable ]
+  _  kernel-5.4               available    [ =stable ]
+ 50  selinux-ng               available    [ =stable ]
+ 51  php8.0                   available    [ =stable ]
+ 52  tomcat9                  available    [ =stable ]
+ 53  unbound1.13              available    [ =stable ]
+ 54  mariadb10.5              available    [ =stable ]
+ 55  kernel-5.10=latest       enabled      [ =stable ]
+ 56  redis6                   available    [ =stable ]
+ 57  ruby3.0                  available    [ =stable ]
+ 58  postgresql12             available    [ =stable ]
+ 59  postgresql13             available    [ =stable ]
+ 60  mock2                    available    [ =stable ]
+ 61  dnsmasq2.85              available    [ =stable ]
+ ```
 Once the installation completed. Please check the version throught the below command.
 
 ```
