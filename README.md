@@ -1,4 +1,4 @@
-# Wordpress-Installation (docker image)-amazonlinux-using-Ansible
+# Wordpress-Installation (using docker image)-amazonlinux-using-Ansible
 Wordpress Installation (using docker image of wordpress) on Amazon linux using Ansible
 
 ## Introduction
