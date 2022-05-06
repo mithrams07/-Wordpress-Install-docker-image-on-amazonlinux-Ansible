@@ -112,7 +112,7 @@ vi main.yml
 
         
         
-   ## Output wil be as below
+   ## Output will be as below
    ```
    [ec2-user@ip-172-31-38-22 ~]$ ansible-playbook  -i hosts word.yml 
 
