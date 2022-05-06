@@ -1,6 +1,6 @@
 ---
 - name: "Installing Wordpress on amazonlinux"
-  hosts: all
+  hosts: wordpress
   become: true
 
   vars:
