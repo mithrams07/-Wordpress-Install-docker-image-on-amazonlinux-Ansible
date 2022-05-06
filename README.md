@@ -353,6 +353,17 @@ changed: [172.31.2.143]
 PLAY RECAP ***********************************************************************************************************************************
 172.31.2.143               : ok=8    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
+
+##### Explanation of tasks:
+Task 1 : To install docker service in client node.
+Task 2 : To installing docker client for python on amazon linux. 
+Task 3 : To start and enable docker service.
+Task 4 : Adding ec2-user to docker group so that ec-user will be able to execute docker commands.
+Task 5 : Creating network. Containers will be attached to this network
+Task 6 : Creating database using mysql5.7 mysql docker image for wordpr.ss using the variables mentioned in "vars" section
+Task 7 : Create wordpress container using "wordpress" docker image 
+
+
          
 ![wp](https://user-images.githubusercontent.com/36097660/167084077-f0871e78-b7b6-4f0b-8884-ff28fe70052c.png)
 
