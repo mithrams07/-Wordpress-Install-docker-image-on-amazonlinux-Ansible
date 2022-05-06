@@ -1,6 +1,29 @@
 # -Wordpress-Installation (docker image)---both-amazonlinux-and-Ubuntu-servers-using-Ansible
 Wordpress Installation (using docker image of wordpress) on both Amazon linux and Ubuntu servers using Ansible
 
+## Introduction
+
+## Pre-requests
+Installing ansible on manager node.
+You can use the below command to install the Ansible in the Manager node.
+
+sudo amazon-linux-extras install ansible2 -y
+Once the installation completed. Please check the version throught the below command.
+
+```
+[ec2-user@ip-172-31-38-22 ~]$ ansible --version
+
+ansible [core 2.12.5]
+  config file = None
+  configured module search path = ['/home/ec2-user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/ec2-user/.local/lib/python3.8/site-packages/ansible
+  ansible collection location = /home/ec2-user/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible
+  python version = 3.8.5 (default, Feb 18 2021, 01:24:20) [GCC 7.3.1 20180712 (Red Hat 7.3.1-12)]
+  jinja version = 3.1.2
+  libyaml = True
+```
+
 ## Ansible playbook
 vi main.yml
 ```
@@ -84,6 +107,10 @@ vi main.yml
           - name: "{{wpnet}}"
 ```
         
+ ![syn](https://user-images.githubusercontent.com/36097660/167087029-9359ba18-ca30-4b67-91a5-cc50dc7d4fb4.png)
+
+
+        
         
    ## Output wil be as below
    ```
@@ -124,3 +151,5 @@ PLAY RECAP *********************************************************************
 ```
          
 ![wp](https://user-images.githubusercontent.com/36097660/167084077-f0871e78-b7b6-4f0b-8884-ff28fe70052c.png)
+
+## Conclusion
