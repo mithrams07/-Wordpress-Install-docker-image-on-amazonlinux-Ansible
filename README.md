@@ -20,7 +20,6 @@ vi main.yml
   tasks:
   
     - name: "Install docker on amazon linux"
-      when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
       yum:
         name:
           - docker
@@ -29,7 +28,6 @@ vi main.yml
 
 
     - name: "Installing docker client for python on amazon linux"
-      when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
       pip:
         name: docker-py
         state: present   
@@ -43,7 +41,6 @@ vi main.yml
         
 
     - name: "Adding ec2-user to docker group on amazon linux"
-      when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
       user:
         name: "{{user_amazon}}"
         groups: docker
