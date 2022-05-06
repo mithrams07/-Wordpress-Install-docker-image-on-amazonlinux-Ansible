@@ -2,6 +2,9 @@
 Wordpress Installation (using docker image of wordpress) on Amazon linux using Ansible
 
 ## Introduction
+Here I am explaining how to automate the process of Installing wordpress on amazon linux server using wordpress docker image in Linux server using Ansible Playbook.
+
+Ansible is an open-source software provisioning, configuration management, and application-deployment tool enabling infrastructure as code.
 
 ## Pre-requests
 Install ansible on manager node.
