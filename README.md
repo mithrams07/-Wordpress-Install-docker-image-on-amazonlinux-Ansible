@@ -380,4 +380,4 @@ After executing playbook successfully, you can access the client server IP addre
 ![wp](https://user-images.githubusercontent.com/36097660/167084077-f0871e78-b7b6-4f0b-8884-ff28fe70052c.png)
 
 ## Conclusion
-Here, we have discussed about how to automate the wordpress installation with docker image using ansible. This is an basic form of it.
+Here, we have discussed about how to automate the wordpress installation with docker image using ansible. This is a basic form of it.
