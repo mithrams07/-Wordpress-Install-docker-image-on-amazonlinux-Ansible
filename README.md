@@ -86,4 +86,40 @@ vi main.yml
         
         
    ## Output wil be as below
+   ```
+   [ec2-user@ip-172-31-38-22 ~]$ ansible-playbook  -i hosts word.yml 
+
+PLAY [Installing Wordpress on amazonlinux] ***************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************
+The authenticity of host '172.31.2.143 (172.31.2.143)' can't be established.
+ECDSA key fingerprint is SHA256:L9dVplgn5zqEn7ULKoN1UUTNRmdFnB1JX1rdmM+OWME.
+ECDSA key fingerprint is MD5:83:aa:fa:8c:db:a7:33:13:5b:9f:2f:2f:4c:01:9a:7e.
+Are you sure you want to continue connecting (yes/no)? yes
+ok: [172.31.2.143]
+
+TASK [Install docker on amazon linux] ********************************************************************************************************
+changed: [172.31.2.143]
+
+TASK [Installing docker client for python on amazon linux] ***********************************************************************************
+changed: [172.31.2.143]
+
+TASK [Restarting and enabling docker] ********************************************************************************************************
+ changed: [172.31.2.143]
+
+TASK [Adding ec2-user to docker group on amazon linux] ***************************************************************************************
+changed: [172.31.2.143]
+
+TASK [Creating network for wordpress] ********************************************************************************************************
+changed: [172.31.2.143]
+
+TASK [Create a database container for wordpress] *********************************************************************************************
+changed: [172.31.2.143]
+
+TASK [Create a wordpress container] **********************************************************************************************************
+changed: [172.31.2.143]
+
+PLAY RECAP ***********************************************************************************************************************************
+172.31.2.143               : ok=8    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
          
