@@ -8,7 +8,7 @@ Install ansible on manager node.
 Use the below command to install the Ansible in the Manager node.
 
 ```
-[ec2-user@ip-172-31-0-6 ~]$ sudo amazon-linux-extras install ansible2 -y
+$ sudo amazon-linux-extras install ansible2 -y
 Installing ansible
 Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
 Cleaning repos: amzn2-core amzn2extra-ansible2 amzn2extra-docker amzn2extra-kernel-5.10
@@ -191,7 +191,7 @@ Complete!
 Use the below command to check the ansible version.
 
 ```
-[ec2-user@ip-172-31-38-22 ~]$ ansible --version
+ ansible --version
 
 ansible [core 2.12.5]
   config file = None
@@ -203,13 +203,27 @@ ansible [core 2.12.5]
   jinja version = 3.1.2
   libyaml = True
 ```
+### Adding inventory file and private key fie.
+
+Create a working directory. I have created a directory "wordpress" under /home/ec2-user. 
+Under this directory add below files.
+
+#### 1. Inventory file.
+   I have created file "hosts" add the details to connect to the destination server as below.
+  <IP address of destination server > ansible_user="ec2-user" ansible_port=22 ansible_ssh_private_key_file="ansible.pem"
+ 
+#### 2. Private key
+ I have created a file "ansible.pem" and pasted the corresponding private key.
+
+ 
+
 
 ## Ansible playbook
 vi main.yml
 ```
 ---
 - name: "Installing Wordpress on amazonlinux"
-  hosts: all
+  hosts: wordpress
   become: true
 
   vars:
@@ -294,7 +308,7 @@ vi main.yml
         
    ## Output will be as below
    ```
-   [ec2-user@ip-172-31-38-22 ~]$ ansible-playbook  -i hosts word.yml 
+   ansible-playbook  -i hosts word.yml 
 
 PLAY [Installing Wordpress on amazonlinux] ***************************************************************************************************
 
